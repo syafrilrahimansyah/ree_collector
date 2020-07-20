@@ -34,20 +34,9 @@ public class MainController {
 	public void collect(@RequestBody OmniformID[] arrOmniformID){
 		log.info("Getting Omniform ID Total "+arrOmniformID.length+" Omniform");
 		for(OmniformID omniform : arrOmniformID) {
-			if(omniformDAO.checkOmniform(omniform.getId()) == omniform.getId()) {
-				log.info(omniform.getId());
-				
-				String omniformPayload = collectDAO.getOmniform(omniform.getId());
-				omniformDAO.updOmniform(omniform.getId(), omniformPayload);
-				
-			}else {
-				log.info(omniform.getId());
-				
-				String omniformPayload = collectDAO.getOmniform(omniform.getId());
-				omniformDAO.addOmniform(omniform.getId(), omniformPayload);
-				
-			}
+			log.info(omniform.getId());
+			String omniformPayload = collectDAO.getOmniform(omniform.getId());
+			omniformDAO.addOmniform(omniform.getId(), omniformPayload);
 		}
-		
 	}
 }
